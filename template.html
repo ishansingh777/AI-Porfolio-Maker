@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ name }}</h1>
+            {% if headline %}
+            <div class="headline">{{ headline }}</div>
+            {% endif %}
+        </header>
+
+        {% if professional_summary %}
+        <section id="about">
+            <h2>About</h2>
+            <div class="glass-card">
+                <p>{{ professional_summary }}</p>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if skills and skills|length > 0 %}
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="glass-card skills-container">
+                {% for skill in skills %}
+                <span class="skill-badge">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if experience and experience|length > 0 %}
+        <section id="experience">
+            <h2>Experience</h2>
+            {% for job in experience %}
+            <div class="glass-card">
+                <h3 class="job-title">{{ job.title }}</h3>
+                <div style="color: var(--accent-color); margin-bottom: 1rem;">
+                    {{ job.company }} {% if job.duration %}| {{ job.duration }}{% endif %}
+                </div>
+                <p>{{ job.description }}</p>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if education and education|length > 0 %}
+        <section id="education">
+            <h2>Education</h2>
+            {% for edu in education %}
+            <div class="glass-card">
+                <h3 class="degree-title">{{ edu.degree }}</h3>
+                <div style="color: var(--accent-color);">
+                    {{ edu.institution }} {% if edu.year %}| {{ edu.year }}{% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if projects and projects|length > 0 %}
+        <section id="projects">
+            <h2>Projects</h2>
+            {% for project in projects %}
+            <div class="glass-card">
+                <h3 class="project-title">{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                {% if project.technologies and project.technologies|length > 0 %}
+                <div class="project-tech">
+                    {% for tech in project.technologies %}
+                    <span class="tech-badge">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if achievements and achievements|length > 0 %}
+        <section id="achievements">
+            <h2>Achievements</h2>
+            <div class="glass-card">
+                <ul style="margin: 0; padding-left: 1.5rem;">
+                    {% for achievement in achievements %}
+                    <li style="margin-bottom: 0.5rem;">{{ achievement }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if contact and (contact.email or contact.phone or contact.linkedin or contact.github or contact.portfolio) %}
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-links">
+                {% if contact.email %}
+                <a href="mailto:{{ contact.email }}">Email</a>
+                {% endif %}
+                {% if contact.phone %}
+                <a href="tel:{{ contact.phone }}">Phone</a>
+                {% endif %}
+                {% if contact.linkedin %}
+                <a href="{{ contact.linkedin if contact.linkedin.startswith('http') else 'https://' + contact.linkedin }}" target="_blank">LinkedIn</a>
+                {% endif %}
+                {% if contact.github %}
+                <a href="{{ contact.github if contact.github.startswith('http') else 'https://' + contact.github }}" target="_blank">GitHub</a>
+                {% endif %}
+                {% if contact.portfolio %}
+                <a href="{{ contact.portfolio if contact.portfolio.startswith('http') else 'https://' + contact.portfolio }}" target="_blank">Portfolio</a>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+</body>
+</html>
