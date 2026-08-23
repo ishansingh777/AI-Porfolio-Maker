@@ -1,0 +1,29 @@
+Siddarth Sharma
+Computer Science Student
+
+Education:
+B.Tech Computer Science
+ABC University
+2026
+
+Skills:
+Python
+Java
+HTML
+CSS
+JavaScript
+
+Projects:
+AI Study Assistant
+Built a Python-based study assistant.
+
+Portfolio Generator
+Created an AI-powered resume-to-portfolio generator.
+
+Achievements:
+Completed a university coding competition.
+
+Contact:
+alex@example.com
+github.com/example
+linkedin.com/in/example
